@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+	/* widget controller */
+	var c = this;
+	// Use a position indicator to know which record to update
+
+	//c.server.update().then(function(){});
+	console.log(c.data.managedUsers);
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>h3.panel-title {
+  font-size:20px;
+  padding-top:5px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>list_groups_and_members</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>List Groups and Members</name>
+        <option_schema>[{"hint":"Specify a title for the Notes List widget","name":"title","section":"other","default_value":"Notes","label":"Title","type":"string"},{"hint":"Select the maximum number of records to display","name":"maximum_records_to_display","section":"other","default_value":"5","label":"Maximum records to display","type":"choice","choices":[{"label":"2","value":"2"},{"label":"3","value":"3"},{"label":"5","value":"5"},{"label":"7","value":"7"},{"label":"11","value":"11"},{"label":"13","value":"13"},{"label":"17","value":"17"}]}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+	var groupsUserManages = new GlideRecord('sys_user_group');
+	//groupsUserManages.addQuery('manager', gs.getUser().getID());
+	
+	//var bethId = "46d44a23a9fe19810012d100cca80666";
+	var id = gs.getUser().getID();
+	groupsUserManages.addQuery('manager', id);
+
+	groupsUserManages.query();
+	data.managedUsers = []; // [{groupName1, [userList1]}, {groupName2, [userList2]},...]
+	gs.log("Server Script Running5...")
+	
+	while (groupsUserManages.next()){
+		var groupObj = {} //{name: groupsUserManages.name} 
+										//userList: groupsUserManages.getRelatedLists().values().toArray()};
+		groupObj.name = groupsUserManages.name.slice(); // make a copy
+		//$sp.getRecordDisplayValues(noteObj, noteGR, 'number,title,sys_id');
+		var userList = [];
+		
+		var groupMemberGr = new GlideRecord('sys_user_grmember');
+		groupMemberGr.addQuery('group', groupsUserManages.sys_id);
+		groupMemberGr.query();
+			while (groupMemberGr.next()){
+				//var username = groupMemberGr.user
+				userList.push(groupMemberGr.user.getDisplayValue().slice());
+			}
+		
+		groupObj.userList = userList;
+		
+		data.managedUsers.push(groupObj);
+		gs.log(groupObj.name +" sysid:" + groupsUserManages.sys_id + "5");
+	}
+
+		gs.log(data.managedUsers + "5");
+	
+
+	//if (input) {
+		
+	//}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-01 14:43:09</sys_created_on>
+        <sys_id>fe16a36b2fe08a9071f12aa62799b649</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>List Groups and Members</sys_name>
+        <sys_package display_value="WidgetsDemo" source="x_1298595_widgetsd">c665eba72fe08a9071f12aa62799b668</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="WidgetsDemo">c665eba72fe08a9071f12aa62799b668</sys_scope>
+        <sys_update_name>sp_widget_fe16a36b2fe08a9071f12aa62799b649</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-01 14:43:09</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+  
+  <div class="panel-heading clearfix">
+    <h3 class="panel-title pull-left">
+      Managed Users by Group
+    </h3>
+  </div>
+
+  <div class="list-group">
+    <div class="list-group-item" ng-repeat="groupObj in data.managedUsers">
+      <h4 class="list-group-item-heading">
+        {{groupObj.name}}
+      </h4>
+      <p class="list-group-item-text" ng-repeat="username in groupObj.userList">
+        {{username}}
+      </p>
+    </div>
+  </div>
+
+</div>
+
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_portal">
+    <sp_portal action="INSERT_OR_UPDATE">
+        <css_variables>body{&#13;
+	background-color: #95b2b1;&#13;
+}</css_variables>
+        <dark_theme/>
+        <default>false</default>
+        <enable_ais>false</enable_ais>
+        <enable_certificate_based_authentication>false</enable_certificate_based_authentication>
+        <enable_favorites>false</enable_favorites>
+        <hide_portal_name>false</hide_portal_name>
+        <homepage display_value="dcm_index_clone">10e6e3eb2fe08a9071f12aa62799b61e</homepage>
+        <icon/>
+        <kb_knowledge_base/>
+        <kb_knowledge_page/>
+        <login_page/>
+        <logo/>
+        <notfound_page/>
+        <quick_start_config/>
+        <rtl_enabled>false</rtl_enabled>
+        <sc_catalog/>
+        <sc_catalog_page/>
+        <sc_category_page/>
+        <search_application/>
+        <search_results_configuration/>
+        <sp_chat_queue/>
+        <sp_rectangle_menu display_value="DCM Header">d9980dba2f20c29071f12aa62799b60b</sp_rectangle_menu>
+        <sys_class_name>sp_portal</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-01 14:49:16</sys_created_on>
+        <sys_id>2b67672f2fe08a9071f12aa62799b604</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Demo Custom Widgets 2</sys_name>
+        <sys_package display_value="WidgetsDemo" source="x_1298595_widgetsd">c665eba72fe08a9071f12aa62799b668</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="WidgetsDemo">c665eba72fe08a9071f12aa62799b668</sys_scope>
+        <sys_update_name>sp_portal_2b67672f2fe08a9071f12aa62799b604</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-01 14:55:14</sys_updated_on>
+        <theme display_value="HRM Theme">9b65ab7c73131300c629e1e54cf6a754</theme>
+        <title>Demo Custom Widgets 2</title>
+        <ts_index_group/>
+        <url_suffix>dcw</url_suffix>
+    </sp_portal>
+    <sys_translated_text action="delete_multiple" query="documentkey=2b67672f2fe08a9071f12aa62799b604"/>
+</record_update>
